@@ -7,6 +7,8 @@ const defaultState = () => {
   }
 }
 
+//const reducer = (state, action) => {  // NB is a defualt state needed ?
+
 const reducer = (state = defaultState() , action) => {
   if (action == undefined || action == null) return state
 
