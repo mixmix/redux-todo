@@ -1,0 +1,32 @@
+{
+  "name": "redux_todo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "watchify index.js -o bundle.js",
+    "test": "tape tests/* | tap-spec"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "redux": "^3.5.2"
+  },
+  "devDependencies": {
+    "babelify": "^7.3.0",
+    "deep-freeze": "0.0.1",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.5.1",
+    "watchify": "^3.7.0"
+  }
+}
