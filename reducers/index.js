@@ -20,6 +20,15 @@ const reducer = (state = defaultState() , action) => {
           newTodo(action.text, state.todos)
         ]
       })
+    case 'TOGGLE_TODO':
+      return Object.assign({}, {
+        todos: state.todos.reduce( (prev, todo, i, todos) => {
+          return [
+            ...prev, 
+            (todo.id === action.id) ? Object.assign({}, todo, {done: !todo.done}) : todo
+          ]
+        }, [])
+      })
     default:
       return state //untested
   }

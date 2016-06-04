@@ -15,21 +15,31 @@ class App extends Component {
     return (
       <div>
         <input type='text' ref={ node => {
-          this.input = node
+          this.toDoInput = node
         }} />
         <button onClick={() => { 
           store.dispatch({
             type: "ADD_TODO", 
-            text: this.input.value
+            text: this.toDoInput.value
           })
-          this.input.value = ''
+          this.toDoInput.value = ''
         }}>
           Add
         </button>
         <ul>
           {
             todos.map( todo => {
-              return <li key={todo.id}>{todo.text}</li>
+              return <li 
+                key={todo.id} 
+                onClick={ ev => {
+                  store.dispatch({type: 'TOGGLE_TODO', id: todo.id})
+                }}
+                style={{
+                  textDecoration: todo.done ? 'line-through' : 'none',
+                  color: todo.done ? 'grey' : 'black'
+                }}>
+                {todo.text}
+              </li>
             })
           }
         </ul>
@@ -41,7 +51,7 @@ class App extends Component {
 const target = document.getElementById('root')
 
 const render = () => {
-  ReactDom.render(<App store={store} />, target)
+  ReactDom.render(<App store={store} state={store.getState()} />, target)
 }
 
 store.subscribe(render)
