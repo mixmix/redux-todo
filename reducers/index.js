@@ -15,16 +15,24 @@ const reducer = (state = defaultState() , action) => {
       return Object.assign({}, state, {
         todos: [
           ...state.todos,
-          {
-            text: action.text,
-            done: false
-          }
+          newTodo(action.text, state.todos)
         ]
       })
-
+    default:
+      return state //untested
   }
-
 }
+
+const newTodo = (text, todos) => {
+  const lastTodo = lastElement(todos)
+  return {
+    id:   lastTodo ? lastTodo.id + 1 : 0,
+    text: text,
+    done: false
+  }
+}
+
+const lastElement = array => array.slice(array.length-1)[0]
 
 export default reducer
 

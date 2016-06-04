@@ -16,6 +16,7 @@ test("Top level reducer", t => {
   deepFreeze(someState)
   t.deepEqual(reducer(someState), someState, 'returns state when no action given')
 
+
   const addToDoAction = deepFreeze({ 
     type: "ADD_TODO",
     text: "read your emails"
@@ -23,6 +24,7 @@ test("Top level reducer", t => {
   const expectedState = Object.assign( {}, defaultState, {
     todos: [
       { 
+        id:   0,
         text: "read your emails",
         done: false
       }
@@ -35,6 +37,7 @@ test("Top level reducer", t => {
   const initialState = deepFreeze({
     todos: [ 
       { 
+        id:   3,
         text: "buy milk",
         done: true
       }
@@ -43,9 +46,11 @@ test("Top level reducer", t => {
   const expectedState2 = {
     todos: [ 
       { 
+        id:   3,
         text: "buy milk",
         done: true
       }, { 
+        id:   4,
         text: "read your emails",
         done: false
       }
