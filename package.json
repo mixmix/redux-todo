@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "watchify index.js -o bundle.js",
-    "test": "babel-tape-runner tests/*.js | tap-diff"
+    "test": "babel-tape-runner tests/**/*.js | tap-diff"
   },
   "browserify": {
     "transform": [
@@ -31,3 +31,4 @@
     "watchify": "^3.7.0"
   }
 }
+
