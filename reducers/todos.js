@@ -8,6 +8,9 @@ const todo = (state = {}, action) => {
         Object.assign({}, state, {done: !state.done}) : 
         state
 
+    default:
+      return state
+
   }
 }
 
@@ -20,8 +23,10 @@ const todos = (state = [] , action) => {
         ...state,
         newTodo(action.text, state)
       ]
+
     case 'TOGGLE_TODO':
       return state.map( t => todo(t, action) )
+
     default:
       return state
   }
