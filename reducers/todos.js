@@ -1,5 +1,16 @@
 import { combineReducers } from 'redux'
 
+
+const todo = (state = {}, action) => {
+  switch (action.type) {
+    case 'TOGGLE_TODO':
+      return (state.id === action.id) ?
+        Object.assign({}, state, {done: !state.done}) : 
+        state
+
+  }
+}
+
 const todos = (state = [] , action) => {
   if (action == undefined || action == null) return state
 
@@ -10,9 +21,7 @@ const todos = (state = [] , action) => {
         newTodo(action.text, state)
       ]
     case 'TOGGLE_TODO':
-      return state.map( (todo) => {
-        return (todo.id === action.id) ? Object.assign({}, todo, {done: !todo.done}) : todo
-      })
+      return state.map( t => todo(t, action) )
     default:
       return state
   }
